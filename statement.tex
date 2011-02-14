@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
+\renewcommand{\labelitemi}{$\bullet$}
+
 \title{\vspace{-14ex} {\small \textbf{Wireless Networks Project Statement}} \\
 		\vspace {3ex} Evaluation and improvement of the accuracy of VANET simulation}
 
@@ -15,14 +17,20 @@ Vehicular Ad Hoc Networks (VANET) are known for their very specific characterist
 
 Due to the unique characteristics of VANETs, traditional network simulators and their mobility models are unable to accurately mimic the operation conditions of this kind of networks. Although many traffic simulators have already been integrated with network simulators [REF] conveying them realistic information about the position of the vehicles, there is still a lack of correct propagation models to provide simulators with concrete information about packet corruption due to the several adverse conditions that may be found in vehicular communications.
 
-Our work will be focused on evaluating the existing propagation models in vehicular environments by running simulations in well-known problematic scenarios and comparing them to similar real-world measurements in equivalent propagation conditions. Using this approach we will account for the accuracy of each propagation model and identify their flaws.
+Our simulation framework will rely on an integration of DIVERT [REF] as the mobility simulator and Network Simulator 3 (NS-3) [REF]. Our choice of NS-3 as the network simulator is based both on the capabilities and the importance that it has proven to have among the research community. DIVERT, on the other side, [STATE SOMETHING ABOUT DIVERT]
 
-If the previous analysis proves to be conclusive and we can clearly point out which is the propagation model that best fits the real-world experimentation results, we will propose an improvement that may either be based on theoretical analysis, empiric data or both.
+Our work will be focused on evaluating the existing propagation models in vehicular environments by running simulations in well-known problematic scenarios and comparing them to similar real-world measurements in equivalent propagation conditions. Using this approach we will account for the accuracy of each propagation model and identify their flaws.
+% Should we say that we are also going to analyse them analitycally?
+
+If the previous analysis proves to be conclusive and we can clearly point out which is the propagation model that best fits the real-world experimentation results, but there is still a significant difference between the real-world experimentation and the simulation we will propose an improvement that may either be based on theoretical analysis, empiric data or both.
 
 \subsection{Related Work}
 
-\section{Objectives and Contributions of our work}
-
+\section{Contributions of our work}
+\begin{itemize}
+	\item A comprehensive evaluation of the existing propagation models for VANETs in NS-3 by comparison to real-world experimentation.
+	\item An improved propagation model that may either be theoretical, based on empiric evidence or both.
+\end{itemize}
 \section{Methodology}
 
 \subsection{Analytical Evaluation}
