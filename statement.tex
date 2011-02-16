@@ -1,45 +1,75 @@
-\documentclass[12pt]{article}
+\documentclass[11pt,letter]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
-
+%\usepackage[hmargin=4.3cm,vmargin=3.5cm]{geometry}
 \renewcommand{\labelitemi}{$\bullet$}
 
-\title{\vspace{-14ex} {\small \textbf{Wireless Networks Project Statement}} \\
-		\vspace {3ex} Evaluation and improvement of the accuracy of VANET simulation}
+\title{Evaluation and improvement of the accuracy of VANET simulation}
 
 \author{\small Andr\'e Cardote and Theodore Martin}
 \date{}
 \begin{document}
   \maketitle 
-  
+\vspace{-5ex}
 \section{Problem Statement}
-Vehicular Ad Hoc Networks (VANET) are known for their very specific characteristics in terms of propagation, path stability [REF] and communication time between nodes. Also, the fact that nodes are commonly cars, together with the variability of the characteristics of the vehicles traveling on the road, as well as the traffic flow, makes it hard to deploy large scale testing and evaluations at early stages of the development of any protocol at all. Moreover, reproducing any kind of scenario is almost impossible, unless there is a complete control over the vehicles that travel in a specific road. Summed up, all these premises evidence that VANET simulation is crucial for the development of protocols capable of coping with the adverse and uncontrollable conditions of such communication environment.
+% Vehicular Ad Hoc Networks (VANET) are known for their very specific characteristics in terms of propagation, path stability [REF] and communication time between nodes. Also, the fact that nodes are commonly cars, together with the variability of the characteristics of the vehicles traveling on the road, as well as the traffic flow, makes it hard to deploy large scale testing and evaluations at early stages of the development of any protocol at all. Moreover, reproducing any kind of scenario is almost impossible, unless there is a complete control over the vehicles that travel in a specific road. Summed up, all these premises evidence that VANET simulation is crucial for the development of protocols capable of coping with the adverse and uncontrollable conditions of such communication environment.
 
-Due to the unique characteristics of VANETs, traditional network simulators and their mobility models are unable to accurately mimic the operation conditions of this kind of networks. Although many traffic simulators have already been integrated with network simulators [REF] conveying them realistic information about the position of the vehicles, there is still a lack of correct propagation models to provide simulators with concrete information about packet corruption due to the several adverse conditions that may be found in vehicular communications.
+Due to the unique characteristics of vehicular ad hoc networks (VANET), traditional network simulators and their mobility models are unable to accurately mimic their operation environment. Although many traffic simulators have already been integrated with network simulators conveying them realistic information about the position of the vehicles, there is still a lack of correct propagation models to provide simulators with concrete information about packet corruption due to the several adverse conditions that may be found in vehicular communications.
 
-Our simulation framework will rely on an integration of DIVERT [REF] as the mobility simulator and Network Simulator 3 (NS-3) [REF]. Our choice of NS-3 as the network simulator is based both on the capabilities and the importance that it has proven to have among the research community. DIVERT, on the other side, [STATE SOMETHING ABOUT DIVERT]
+Our work will be focused on evaluating the existing propagation models in vehicular environments by running simulations in well-known problematic scenarios, such as intersections with and without buildings, roads with elevation and tunnels, and comparing them to similar real-world measurements in equivalent propagation conditions. Using this approach we will account for the accuracy of each propagation model for a given scenario and identify their flaws.
 
-Our work will be focused on evaluating the existing propagation models in vehicular environments by running simulations in well-known problematic scenarios and comparing them to similar real-world measurements in equivalent propagation conditions. Using this approach we will account for the accuracy of each propagation model and identify their flaws.
-% Should we say that we are also going to analyse them analitycally?
+Our simulation framework will rely on an integration of DIVERT \cite{Conceicao:2008p1397} as the mobility simulator and Network Simulator 3 (NS-3) \cite{NS3} as the network simulator. Our choice of NS-3 as the network simulator is based both on the capabilities and the importance that it has proven to have among the research community. DIVERT, on the other hand, is a mobility simulator capable of generating traces for the scenarios we are considering.
 
-If the previous analysis proves to be conclusive and we can clearly point out which is the propagation model that best fits the real-world experimentation results, but there is still a significant difference between the real-world experimentation and the simulation we will propose an improvement that may either be based on theoretical analysis, empiric data or both.
+If the aforementioned analysis proves to be conclusive and we can clearly point out which is or which are the propagation model that best fit the real-world experimentation results, but there is still a significant difference between the real-world experimentation and the simulation we will propose an improvement that may either be based on theoretical analysis, empirical data or both.
 
 \subsection{Related Work}
+Although it is not our intention to give an extensive list of related work in this proposal, we have to mention that we will take into account the work performed by Boban et al. in \cite{Boban:2011p246} and work in cooperation with the authors in order to ensure that our work will be a complement to theirs.
 
 \section{Contributions of our work}
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 	\item A comprehensive evaluation of the existing propagation models for VANETs in NS-3 by comparison to real-world experimentation.
 	\item An improved propagation model that may either be theoretical, based on empiric evidence or both.
 \end{itemize}
 \section{Methodology}
-As briefly stated in the problem statement, we will survey the existing and implemented propagation models for NS-3 and select those that better suit the vehicular environment. Following that analysis, we will run simulations using each one and then compare them to real-world measurements. The result of this set of comparisons will allow us to determine which is the propagation model that best fits the real-world experiments, as well as it's major flaws.
+As briefly stated in the problem statement, we will survey the existing and implemented propagation models for NS-3 and select those that better suit the vehicular environment. Following that analysis, we will run simulations using each one and then compare them to real-world measurements. The result of this set of comparisons will allow us to determine which is the propagation model that best fits the real-world measurements, as well as it's major flaws in specific scenarios.
 
-[... DEVELOP A NEW ONE ...]
 \subsection{Analytical Evaluation}
+In order to form an analytical evaluation we will have to choose a
+propagation model for the simulator to use. Clearly the model chosen
+will need to allow us to manipulate certain values and thus models that
+do not take those into account at all will not be useful. In choosing a
+model we will be looking at the following values to be available for
+user specification: Line-of-Sight versus non-Line-of-Sight, reflectivity
+of the environment, building/obstacle density, elevation deltas between
+source and receiver, deltas in the vertical component of the velocity
+vectors of the two cars.
 
 \subsection{Real-world Experimentation}
+For our real-world experimentation we will be using a test-bed set up in
+Aveiro, Portugal. This test bed consists of 10 modules which are x86
+processors hooked up to 802.11n radio cards. In addition, each node can
+be installed into a car and, using the on board GPS device, log location
+and radio data as the car drives around. We expect to be able to use at
+most 6 in a single experiment, but this should be more than enough
+considering the primary test scenario is 2 car communication.
+
+Each experiment will cover at least one of the following scenarios, which will be selected according to their overall impact in vehicular communications:
+\begin{itemize}\itemsep2pt
+	\item Hilly Highway
+	\item Hilly Urban Environment
+	\item Highway Interchanges
+	%\item Curvy Highway
+	\item Tunnels
+	\item Downtown Intersection
+	\item 10x10 Block of Downtown Intersections
+\end{itemize}
+
+Using map data, we will create routes for the test engineers to drive to
+model cars going through various of the above scenarios.
 
 \subsection{Simulation}
+Simulation, as specified previously, will be carried out using DIVERT and NS-3. DIVERT will be used to provide us mobility logs for the different scenarios that we will consider, whereas NS-3 will be responsible for simulating the propagation and network part. There is yet another open possibility, which is to use GPS logs collected during the real-world experimentation as an input to NS-3, providing the mobility pattern of vehicles, which may lead to more comparable and conclusive results.
 
-
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,acardote_papers}
 \end{document}
